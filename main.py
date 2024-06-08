@@ -13,25 +13,9 @@ from math import sqrt
 pi = math.pi
 
 
-plt.rcParams["text.usetex"] = True
-tex_fonts = {
-    # Use LaTeX to write all text
-    "text.usetex": True,
-    "font.family": "serif",
-    # Use 10pt font in plots, to match 10pt font in document
-    "axes.labelsize": 10,
-    "font.size": 10,
-    # Make the legend/label fonts a little smaller
-    "legend.fontsize": 8,
-    "xtick.labelsize": 8,
-    "ytick.labelsize": 8
-}
 
-plt.rcParams.update(tex_fonts)
-plt.rc('text', usetex=True)
-
-
-
+matplotlib.rc('xtick', labelsize=20)
+matplotlib.rc('ytick', labelsize=20)
 
 
 
@@ -72,47 +56,116 @@ def gauss(term):
 
 # 1. teil: quecksilber
 
-x11 = 1.99/1000 #
-x21 = 1.67/1000 #
+x1 = 1.99/1000 #
+sigma_x1 = 0.05/1000
+x2 = 1.67/1000 #
+sigma_x2 = 0.05/1000
 N1 = 201 # pm 10
+sigma_N1 = 40
+
+ü1 = N1*546.1e-9/(x1 - x2)
+sigma_ü1 = gauss("N1*546.1*10**-9/(x1 - x2)")
 
 
-x12 = 2.91/1000
-x22 = 2.64/1000
-N2 = 200
+
+x1 = 2.91/1000
+sigma_x1 = 0.05/1000
+x2 = 2.64/1000
+sigma_x2 = 0.05/1000
+N1 = 200
+sigma_N1 = 40
+
+ü2 = N1*(546.1e-9)/(x1 - x2)
+sigma_ü2 = gauss("N1*(546.1*10**-9)/(x1 - x2)")
+
+x1 = 4.865/1000
+sigma_x1 = 0.05/1000
+x2 = 4.52/1000
+sigma_x2 = 0.05/1000
+N1 = 200
+sigma_N1 = 40
+
+ü3 = N1*(546.1e-9)/(x1 - x2)
+sigma_ü3 = gauss("N1*(546.1*10**-9)/(x1 - x2)")
+
+u_ges = mean(array([ü1, ü2, ü3]))
+sigma_u_ges = max(array([sigma_ü1, sigma_ü2, sigma_ü3]))/sqrt(3)
 
 
-x13 = 4.865/1000
-x23 = 4.52/1000
-N3 = 200
 
 #natrium
-x11 = 4.485/1000
-x21 = 4.19/1000
+x1 = 4.485/1000
+x2 = 4.19/1000
 N1 = 200
+sigma_N1 = 10
 
-x12 = 4.19/1000
-x22 = 3.88
-N2 = 206
+lamda_m1 = u_ges*(x1 - x2)/N1
+sigma_lamda_m1 = gauss("u_ges*(x1 - x2)/N1")
+
+x1 = 4.19/1000
+x2 = 3.88/1000
+N1 = 206
+
+lamda_m2 = u_ges*(x1 - x2)/N1
+sigma_lamda_m2 = gauss("u_ges*(x1 - x2)/N1")
+
+lamda_m = mean(array([lamda_m1, lamda_m2]))
+sigma_lamda_m = max(array([sigma_lamda_m1, sigma_lamda_m2]))/sqrt(2)
 
 #Schwebung:
 
-s0 = 6.44
-s1 = 4.96
+s4 = 6.44
+s3 = 4.96
 s2 = 3.44
-s3 = 1.97
-s4 = 0.5
+s1 = 1.97
+s0 = 0.5
 
 
-s12 = 7.88
-s22 = 9.33
-s32 = 10.79
-s42 = 12.24
-s52 = 13.63
+s5 = 7.88
+s6 = 9.33
+s7 = 10.79
+s8 = 12.24
+s9 = 13.63
+
+Y = array([s0, s1, s2, s3, s4, s5, s6, s7, s8, s9])
+sigma_Y = 0.1*ones(10)
+X = array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+def linear(x, a):
+    return a*x
+
+
+errorbar(X, Y, sigma_Y, None,'x', label='Schwebung')
+optimizedParameters1, s = opt.curve_fit(linear, X, Y)
+plot(X, linear(X, *optimizedParameters1), label="fit1")
+xlabel('Index des Kontrastminimums', fontsize=20)
+ylabel('Abstand in mm', fontsize=20)
+legend(fontsize=13, loc='center left')
+grid()
+plt.tight_layout()
+savefig('SchwebNa')
+show()
+
+delta_x = optimizedParameters1[0]
+sigma_delta_x = np.diag(s)[0]
+
+lamda_s = u_ges*delta_x/1000
+sigma_lamda_s = gauss("u_ges*delta_x/1000")
+
+delta_lamda = 2*lamda_m**2/lamda_s
+sigma_delta_lamda = gauss("2*lamda_m**2/lamda_s")
+
 
 # auswerteformeln: delta_lambda = 2*lambda_m^2/lambda_s
 
+
+#wolfram
 x1 = 4.23/1000
 #platte einbringen, und neu suchen
 x2 = 1.27/1000
 dicke = 1.1/1000 #pm 0.05/1000
+sigma_dicke = 0.05/1000
+
+n = (u_ges*(x1 - x2) + dicke)/dicke
+sigma_n = gauss("(u_ges*(x1 - x2) + dicke)/dicke")
+
