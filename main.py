@@ -163,7 +163,7 @@ sigma_delta_lamda = gauss("2*lamda_m**2/lamda_s")
 x1 = 4.23/1000
 #platte einbringen, und neu suchen
 x2 = 1.27/1000
-dicke = 1.5/1000 #pm 0.05/1000
+dicke = 1.1/1000 #pm 0.05/1000
 sigma_dicke = 0.05/1000
 
 n = (u_ges*(x1 - x2) + dicke)/dicke
