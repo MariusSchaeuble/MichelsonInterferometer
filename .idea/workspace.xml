@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79e246de-e0cc-4697-99d2-f404832db746" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Grundpraktikum/FITTER.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="79e246de-e0cc-4697-99d2-f404832db746" name="Changes" comment="auswertung fertig mit reinen werten, fitter file bei gp, latex weg">
       <change beforePath="$PROJECT_DIR$/../Grundpraktikum/GPII.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Grundpraktikum/GPII.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Grundpraktikum/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Grundpraktikum/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -130,11 +126,24 @@
       <updated>1717788722826</updated>
       <workItem from="1717788723943" duration="235000" />
       <workItem from="1717789755953" duration="703000" />
-      <workItem from="1717832183156" duration="4852000" />
+      <workItem from="1717832183156" duration="13252000" />
     </task>
+    <task id="LOCAL-00001" summary="auswertung fertig mit reinen werten, fitter file bei gp, latex weg">
+      <option name="closed" value="true" />
+      <created>1717837095636</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717837095636</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="auswertung fertig mit reinen werten, fitter file bei gp, latex weg" />
+    <option name="LAST_COMMIT_MESSAGE" value="auswertung fertig mit reinen werten, fitter file bei gp, latex weg" />
   </component>
 </project>
